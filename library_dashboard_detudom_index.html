@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ระบบยืม–คืนหนังสือ | วิทยาลัยเทคนิคเดชอุดม</title>
+<style>
+:root{--navy:#102b52;--blue:#1769aa;--sky:#eaf3fc;--ink:#203047;--muted:#718096;--line:#e4eaf1;--bg:#f4f7fb;--green:#16845b;--red:#c74747;--amber:#b7791f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,"Noto Sans Thai",sans-serif;color:var(--ink)}
+header{background:linear-gradient(115deg,#102b52,#1769aa);color:#fff;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:48px;height:48px;border-radius:14px;background:#ffffff20;display:grid;place-items:center;font-size:25px}.brand h1{font-size:20px;margin:0 0 4px}.brand p{margin:0;color:#d8e8f8;font-size:12px}.head-actions{display:flex;gap:8px;flex-wrap:wrap}
+button{border:0;border-radius:9px;padding:10px 14px;font:inherit;font-size:13px;cursor:pointer;background:var(--blue);color:white}button:hover{filter:brightness(.95)}button.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}button.danger{background:#fff0f0;color:var(--red)}button.small{padding:7px 10px;font-size:12px}
+.layout{display:grid;grid-template-columns:225px 1fr;min-height:calc(100vh - 92px)}aside{background:#fff;border-right:1px solid var(--line);padding:20px 14px}.nav-label{font-size:11px;color:#9aa6b5;padding:8px 12px}.nav{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;color:#526176;margin:3px 0;padding:12px;border-radius:10px}.nav.active,.nav:hover{background:var(--sky);color:var(--blue)}main{padding:26px;max-width:1500px;width:100%;margin:auto}.page-title{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px}.page-title h2{margin:0 0 5px;font-size:23px}.page-title p{margin:0;color:var(--muted);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{font-size:20px}.stat strong{display:block;font-size:27px;margin-top:10px;color:var(--navy)}.stat small{color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}.panel h3{margin:0 0 16px;font-size:16px}.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:#58677b}.field input,.field select{width:100%;padding:11px;border:1px solid #dce4ee;border-radius:8px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}.field input:focus,.field select:focus{outline:2px solid #b8d7f4;border-color:var(--blue)}.form-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}.search{min-width:240px;max-width:380px;flex:1;padding:10px 12px;border:1px solid #dce4ee;border-radius:9px;font:inherit;font-size:13px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px;white-space:nowrap}th{color:#6b7b8e;background:#f8fafc;font-weight:600}td{color:#34445a}.badge{padding:5px 8px;border-radius:20px;font-size:11px;background:#e9f7ef;color:var(--green)}.badge.late{background:#fff0f0;color:var(--red)}.badge.returned{background:#edf2f7;color:#637083}.empty{text-align:center;color:#8a97a8;padding:28px}.hidden{display:none!important}.notice{font-size:12px;color:var(--muted);line-height:1.7}.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.report-card{border:1px solid var(--line);border-radius:12px;padding:16px}.report-card h4{margin:0 0 7px;font-size:14px}.report-card p{margin:0 0 12px;color:var(--muted);font-size:12px}.footer-note{font-size:11px;color:#8b98a8;text-align:center;padding:12px}
+@media(max-width:950px){.layout{grid-template-columns:1fr}aside{display:flex;overflow:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.nav-label{display:none}.nav{white-space:nowrap;width:auto;margin:0}.cards{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){header{padding:16px;align-items:flex-start}.brand h1{font-size:16px}.head-actions button{padding:8px;font-size:11px}.layout{min-height:auto}main{padding:16px}.cards{gap:8px}.stat{padding:12px}.stat strong{font-size:22px}.form-grid,.report-grid{grid-template-columns:1fr}.page-title h2{font-size:19px}}
+@media print{header,aside,.no-print,.form-actions,.toolbar button{display:none!important}.layout{display:block}main{padding:0;max-width:none}.panel,.stat{box-shadow:none;border:0}.cards{grid-template-columns:repeat(4,1fr)}body{background:white}table{min-width:0}th,td{font-size:10px;padding:7px}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">📚</div><div><h1>ระบบยืม–คืนหนังสือห้องสมุด</h1><p>DETUDOM TECHNICAL COLLEGE · วิทยาลัยเทคนิคเดชอุดม</p></div></div><div class="head-actions"><button class="secondary" onclick="window.print()">🖨 พิมพ์รายงาน</button><button onclick="exportCSV()">⬇ ส่งออก Excel (CSV)</button></div></header>
+<div class="layout"><aside>
+<div style="width:100%">
+<div class="nav-label">เมนูหลัก</div>
+<button class="nav active" data-page="dashboard">▦ ภาพรวม Dashboard</button>
+<button class="nav" data-page="borrow">＋ บันทึกยืม–คืน</button>
+<button class="nav" data-page="records">☷ ข้อมูลการยืมทั้งหมด</button>
+<button class="nav" data-page="overdue">⚠ รายงานผู้ค้างส่ง</button>
+<button class="nav" data-page="reports">▤ รายงานและสรุปผล</button>
+<div class="nav-label" style="margin-top:18px">การจัดการข้อมูล</div>
+<button class="nav" data-page="students">♙ ข้อมูลผู้ยืม</button>
+</div></aside>
+<main>
+<section id="dashboard" class="page">
+<div class="page-title"><div><h2>ภาพรวมระบบห้องสมุด</h2><p>สรุปสถานะการยืม–คืนหนังสือ ณ ปัจจุบัน</p></div><span class="badge">ระบบพร้อมใช้งาน</span></div>
+<div class="cards">
+<div class="stat"><div class="stat-top">ผู้ยืมทั้งหมด <span class="stat-icon">👥</span></div><strong id="sBorrowers">0</strong><small>รายชื่อผู้ยืมในระบบ</small></div>
+<div class="stat"><div class="stat-top">กำลังยืม <span class="stat-icon">📖</span></div><strong id="sActive">0</strong><small>รายการที่ยังไม่คืน</small></div>
+<div class="stat"><div class="stat-top">คืนแล้ว <span class="stat-icon">✓</span></div><strong id="sReturned">0</strong><small>รายการที่คืนเรียบร้อย</small></div>
+<div class="stat"><div class="stat-top">ค้างส่ง <span class="stat-icon">⚠️</span></div><strong id="sOverdue" style="color:var(--red)">0</strong><small>เกินกำหนดส่งและยังไม่คืน</small></div>
+</div>
+<div class="panel"><div class="toolbar"><h3 style="margin:0">รายการยืมล่าสุด</h3><button class="small secondary" onclick="showPage('records')">ดูทั้งหมด →</button></div><div id="recentTable"></div></div>
+<div class="panel"><h3>หมายเหตุการใช้งาน</h3><p class="notice">ระบบต้นแบบนี้จัดเก็บข้อมูลไว้ในเบราว์เซอร์ของเครื่องที่ใช้งาน (Local Storage) เหมาะสำหรับทดลองและใช้งานบนเครื่องเดียว ข้อมูลยังไม่เชื่อมต่อฐานข้อมูลส่วนกลาง จึงไม่ควรล้างข้อมูลเว็บไซต์หรือเปลี่ยนเครื่องก่อนสำรองข้อมูล</p></div>
+</section>
+<section id="borrow" class="page hidden">
+<div class="page-title"><div><h2>บันทึกข้อมูลยืม–คืนหนังสือ</h2><p>กรอกข้อมูลตามแบบเอกสารห้องสมุดที่แนบ</p></div></div>
+<div class="panel"><h3>ข้อมูลผู้ยืมและหนังสือ</h3>
+<form id="loanForm">
+<div class="form-grid">
+<div class="field"><label>ชื่อ</label><input id="firstName" required placeholder="ชื่อ"></div>
+<div class="field"><label>นามสกุล</label><input id="lastName" required placeholder="นามสกุล"></div>
+<div class="field"><label>รหัสนักศึกษา</label><input id="studentId" required placeholder="รหัสนักศึกษา"></div>
+<div class="field"><label>สาขาวิชา</label><input id="major" required placeholder="สาขาวิชา"></div>
+<div class="field"><label>ชื่อหนังสือ</label><input id="bookName" required placeholder="ชื่อหนังสือ"></div>
+<div class="field"><label>ชื่อผู้แต่ง</label><input id="author" required placeholder="ชื่อผู้แต่ง"></div>
+<div class="field"><label>วันที่ยืม</label><input id="borrowDate" type="date" required></div>
+<div class="field"><label>วันที่ส่ง / กำหนดส่ง</label><input id="dueDate" type="date" required></div>
+</div><div class="form-actions"><button type="submit">บันทึกข้อมูล</button><button type="reset" class="secondary" onclick="setDefaultDates()">ล้างข้อมูล</button></div>
+</form></div>
+<div class="panel"><h3>คำแนะนำ</h3><p class="notice">กรอกข้อมูลผู้ยืม ชื่อหนังสือ ผู้แต่ง วันที่ยืม และวันที่ส่งให้ครบถ้วน เมื่อบันทึกแล้วระบบจะนำข้อมูลไปแสดงในรายงานและตรวจสอบรายการค้างส่งโดยอัตโนมัติ</p></div>
+</section>
+<section id="records" class="page hidden">
+<div class="page-title"><div><h2>ข้อมูลการยืมทั้งหมด</h2><p>ค้นหา แก้ไขสถานะการคืน และลบรายการ</p></div></div>
+<div class="panel"><div class="toolbar"><input class="search" id="recordSearch" placeholder="ค้นหาชื่อ รหัสนักศึกษา หรือชื่อหนังสือ..." oninput="renderRecords()"><button onclick="window.print()" class="secondary">🖨 พิมพ์รายการ</button></div><div id="recordsTable"></div></div>
+</section>
+<section id="overdue" class="page hidden">
+<div class="page-title"><div><h2>รายงานผู้ค้างส่งหนังสือ</h2><p>แสดงรายการที่เลยกำหนดส่งและยังไม่ได้บันทึกคืน</p></div><button onclick="window.print()" class="secondary no-print">🖨 พิมพ์รายงาน</button></div>
+<div class="panel"><div id="overdueTable"></div></div>
+</section>
+<section id="students" class="page hidden">
+<div class="page-title"><div><h2>ข้อมูลผู้ยืม</h2><p>รายชื่อผู้ที่เคยมีรายการยืมหนังสือในระบบ</p></div></div>
+<div class="panel"><div class="toolbar"><input class="search" id="studentSearch" placeholder="ค้นหาชื่อหรือรหัสนักศึกษา..." oninput="renderStudents()"><button class="secondary" onclick="window.print()">🖨 พิมพ์รายชื่อ</button></div><div id="studentsTable"></div></div>
+</section>
+<section id="reports" class="page hidden">
+<div class="page-title"><div><h2>รายงานและสรุปผล</h2><p>เลือกประเภทรายงานเพื่อพิมพ์หรือส่งออกข้อมูล</p></div></div>
+<div class="panel"><div class="report-grid">
+<div class="report-card"><h4>📋 รายงานการยืมทั้งหมด</h4><p>สรุปรายการยืมและสถานะคืนหนังสือ</p><button onclick="showPage('records');window.print()">พิมพ์รายงาน</button></div>
+<div class="report-card"><h4>⚠️ รายงานผู้ค้างส่ง</h4><p>รายชื่อผู้ยืมที่เกินกำหนดส่ง</p><button onclick="showPage('overdue');window.print()">พิมพ์รายงาน</button></div>
+<div class="report-card"><h4>👥 รายงานข้อมูลผู้ยืม</h4><p>รายชื่อ รหัสนักศึกษา และสาขาวิชา</p><button onclick="showPage('students');window.print()">พิมพ์รายงาน</button></div>
+</div></div>
+<div class="panel"><h3>สรุปจำนวนรายการ</h3><div id="summaryText" class="notice"></div></div>
+</section>
+<div class="footer-note">ระบบยืม–คืนหนังสือห้องสมุด · วิทยาลัยเทคนิคเดชอุดม</div>
+</main></div>
+<script>
+const KEY='dtec_library_loans_v1';let loans=JSON.parse(localStorage.getItem(KEY)||'[]');
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(KEY,JSON.stringify(loans));renderAll()}
+function status(x){if(x.returned)return 'คืนแล้ว';return x.dueDate<today()?'ค้างส่ง':'กำลังยืม'}
+function daysLate(x){return Math.max(0,Math.floor((new Date(today())-new Date(x.dueDate))/86400000))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('hidden',p.id!==id));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===id));renderAll()}
+document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function setDefaultDates(){$('borrowDate').value=today();let d=new Date();d.setDate(d.getDate()+7);$('dueDate').value=d.toISOString().slice(0,10)}
+setDefaultDates();
+$('loanForm').addEventListener('submit',e=>{e.preventDefault();const x={id:Date.now(),firstName:$('firstName').value.trim(),lastName:$('lastName').value.trim(),studentId:$('studentId').value.trim(),major:$('major').value.trim(),bookName:$('bookName').value.trim(),author:$('author').value.trim(),borrowDate:$('borrowDate').value,dueDate:$('dueDate').value,returned:false,returnDate:''};if(x.dueDate<x.borrowDate){alert('วันที่ส่งต้องไม่ก่อนวันที่ยืม');return}loans.unshift(x);save();e.target.reset();setDefaultDates();alert('บันทึกข้อมูลเรียบร้อยแล้ว');showPage('records')});
+function table(items,mode='records'){if(!items.length)return '<div class="empty">ยังไม่มีข้อมูลในระบบ</div>';let rows=items.map(x=>{let st=status(x),badge=st==='ค้างส่ง'?'late':st==='คืนแล้ว'?'returned':'';return `<tr><td>${esc(x.firstName)} ${esc(x.lastName)}</td><td>${esc(x.studentId)}</td><td>${esc(x.major)}</td><td>${esc(x.bookName)}</td><td>${esc(x.author)}</td><td>${esc(x.borrowDate)}</td><td>${esc(x.dueDate)}</td><td><span class="badge ${badge}">${st}</span>${st==='ค้างส่ง'?`<br><small style="color:var(--red)">เกิน ${daysLate(x)} วัน</small>`:''}</td><td class="no-print">${!x.returned?`<button class="small" onclick="returnLoan(${x.id})">รับคืน</button> `:''}<button class="small danger" onclick="deleteLoan(${x.id})">ลบ</button></td></tr>`}).join('');return `<div class="table-wrap"><table><thead><tr><th>ชื่อ–นามสกุล</th><th>รหัสนักศึกษา</th><th>สาขาวิชา</th><th>ชื่อหนังสือ</th><th>ชื่อผู้แต่ง</th><th>วันที่ยืม</th><th>วันที่ส่ง</th><th>สถานะ</th><th class="no-print">จัดการ</th></tr></thead><tbody>${rows}</tbody></table></div>`}
+function returnLoan(id){let x=loans.find(a=>a.id===id);if(x&&!x.returned&&confirm('ยืนยันการรับคืนหนังสือเล่มนี้?')){x.returned=true;x.returnDate=today();save()}}
+function deleteLoan(id){if(confirm('ต้องการลบรายการนี้ใช่หรือไม่?')){loans=loans.filter(x=>x.id!==id);save()}}
+function renderRecords(){let q=($('recordSearch')?.value||'').toLowerCase();let arr=loans.filter(x=>[x.firstName,x.lastName,x.studentId,x.bookName,x.major].join(' ').toLowerCase().includes(q));$('recordsTable').innerHTML=table(arr)}
+function renderOverdue(){$('overdueTable').innerHTML=table(loans.filter(x=>status(x)==='ค้างส่ง'))}
+function renderStudents(){let q=($('studentSearch')?.value||'').toLowerCase(),m=new Map();loans.forEach(x=>{let k=x.studentId;if(!m.has(k))m.set(k,{...x,count:0});m.get(k).count++});let a=[...m.values()].filter(x=>[x.firstName,x.lastName,x.studentId,x.major].join(' ').toLowerCase().includes(q));$('studentsTable').innerHTML=a.length?`<div class="table-wrap"><table><thead><tr><th>ชื่อ–นามสกุล</th><th>รหัสนักศึกษา</th><th>สาขาวิชา</th><th>จำนวนครั้งที่ยืม</th></tr></thead><tbody>${a.map(x=>`<tr><td>${esc(x.firstName)} ${esc(x.lastName)}</td><td>${esc(x.studentId)}</td><td>${esc(x.major)}</td><td>${x.count}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">ยังไม่มีข้อมูลผู้ยืม</div>'}
+function renderAll(){$('sBorrowers').textContent=new Set(loans.map(x=>x.studentId)).size;$('sActive').textContent=loans.filter(x=>!x.returned).length;$('sReturned').textContent=loans.filter(x=>x.returned).length;$('sOverdue').textContent=loans.filter(x=>status(x)==='ค้างส่ง').length;$('recentTable').innerHTML=table(loans.slice(0,5));renderRecords();renderOverdue();renderStudents();$('summaryText').textContent=`ผู้ยืม ${new Set(loans.map(x=>x.studentId)).size} คน · รายการยืมทั้งหมด ${loans.length} รายการ · กำลังยืม ${loans.filter(x=>!x.returned).length} รายการ · คืนแล้ว ${loans.filter(x=>x.returned).length} รายการ · ค้างส่ง ${loans.filter(x=>status(x)==='ค้างส่ง').length} รายการ`}
+function exportCSV(){let headers=['ชื่อ','นามสกุล','รหัสนักศึกษา','สาขาวิชา','ชื่อหนังสือ','ชื่อผู้แต่ง','วันที่ยืม','วันที่ส่ง','สถานะ','วันที่คืน'];let rows=loans.map(x=>[x.firstName,x.lastName,x.studentId,x.major,x.bookName,x.author,x.borrowDate,x.dueDate,status(x),x.returnDate]);let csv='\uFEFF'+[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='รายงานยืมคืนห้องสมุด.csv';a.click();URL.revokeObjectURL(a.href)}
+renderAll();
+</script></body></html>
